@@ -1,0 +1,503 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="ViroQuest — Interactive Educational Game on Virology, Host–Virus Interaction & Vaccine Design for College Open Day" />
+  <title>ViroQuest — Virology &amp; Vaccine Design Interactive Lab</title>
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>🧬</text></svg>" />
+  <link rel="stylesheet" href="css/main.css" />
+  <link rel="stylesheet" href="css/menu.css" />
+  <link rel="stylesheet" href="css/hud.css" />
+</head>
+<body>
+
+  <!-- Ambient Bioluminescent Background Orbs -->
+  <div class="bg-particle-container" aria-hidden="true">
+    <div class="floating-particle p1"></div>
+    <div class="floating-particle p2"></div>
+    <div class="floating-particle p3"></div>
+    <div class="floating-particle p4"></div>
+    <div class="floating-particle p5"></div>
+  </div>
+
+  <!-- Open Day Exhibition Mode Top Banner -->
+  <div id="demo-banner" class="demo-banner" hidden>
+    <span>🎓 <strong>OPEN DAY EXHIBITION MODE</strong> — Larger Display · Visitor-Friendly GUI · 100% Offline</span>
+    <button type="button" id="btn-exit-demo" class="demo-banner-close">Exit Demo Mode</button>
+  </div>
+
+  <!-- ========================================================================
+       MAIN MENU SCREEN (#screen-menu)
+       ======================================================================== -->
+  <main id="screen-menu" class="screen active">
+    <div class="menu-container">
+
+      <!-- Top Utility Bar -->
+      <header class="menu-topbar">
+        <div class="menu-brand-pill">
+          <span>🔬 College Open Day Interactive Bio-Lab · Class 12 &amp; 1st-Year Edition</span>
+        </div>
+        <div class="menu-quick-controls">
+          <button type="button" id="btn-quick-sound" class="quick-pill-btn active" title="Toggle Sound Effects (M)">
+            🔊 Sound ON
+          </button>
+          <button type="button" id="btn-quick-demo" class="quick-pill-btn" title="Toggle Larger Exhibition Font & Banner (D)">
+            🖥️ Open Day Mode
+          </button>
+          <button type="button" id="btn-quick-fullscreen" class="quick-pill-btn" title="Toggle Fullscreen (F)">
+            ⛶ Fullscreen
+          </button>
+          <button type="button" id="btn-quick-howto" class="quick-pill-btn" title="Quick Controls & How to Play">
+            ❓ How to Play
+          </button>
+        </div>
+      </header>
+
+      <!-- Hero Title -->
+      <section class="menu-hero">
+        <h1 class="menu-title">
+          <span aria-hidden="true">🧬</span>
+          <span class="title-gradient">ViroQuest</span>
+        </h1>
+        <p class="menu-subtitle">
+          Explore how viruses unlock human cells and how scientists engineer life-saving vaccines!
+          <strong>Defend a living cell</strong>, <strong>build a DNA vaccine</strong>, and <strong>solve real virology cases</strong>.
+        </p>
+      </section>
+
+      <!-- 3 Primary Interactive Game Modes -->
+      <section class="menu-modes-grid" aria-label="Playable Game Modes">
+
+        <!-- MODE 1: Cell Defender -->
+        <article class="mode-card mode-card--1" data-launch-mode="mode1" tabindex="0" role="button" aria-label="Launch Mode 1: Cell Defender">
+          <div class="mode-card-stripe stripe--teal"></div>
+          <div class="mode-card-top">
+            <div class="mode-icon-bubble" aria-hidden="true">🛡️</div>
+            <div class="mode-card-badges">
+              <span class="mode-card-tag">Mode 1 · Arcade</span>
+              <span class="mode-time-est">⏱ 2–3 min</span>
+            </div>
+          </div>
+          <h2 class="mode-card-title">Cell Defender</h2>
+          <div class="mode-card-subtitle">Host–Virus Lock &amp; Key Action</div>
+          <p class="mode-card-desc">
+            Viruses enter cells by fitting shaped surface <strong>Spikes</strong> into matching cell <strong>Receptors</strong>. Launch matching Y-shaped Antibodies to block COVID-19, Flu, HIV &amp; Ebola!
+          </p>
+          <div class="mode-concepts">
+            <span class="concept-chip">🔑 Lock &amp; Key Entry</span>
+            <span class="concept-chip">🛡️ Y-Antibodies</span>
+            <span class="concept-chip">⚡ 5 Wave Unlocks</span>
+          </div>
+          <div class="mode-card-hs" id="hs-preview-mode1"></div>
+          <button type="button" class="btn btn-primary mode-card-btn">▶ Play Cell Defender</button>
+        </article>
+
+        <!-- MODE 2: Vaccine Maker Studio -->
+        <article class="mode-card mode-card--2" data-launch-mode="mode2" tabindex="0" role="button" aria-label="Launch Mode 2: Vaccine Maker Studio">
+          <div class="mode-card-stripe stripe--amber"></div>
+          <div class="mode-card-top">
+            <div class="mode-icon-bubble" aria-hidden="true">🧬</div>
+            <div class="mode-card-badges">
+              <span class="mode-card-tag">Mode 2 · Lab Studio</span>
+              <span class="mode-time-est">⏱ 3–5 min</span>
+            </div>
+          </div>
+          <h2 class="mode-card-title">Vaccine Maker Studio</h2>
+          <div class="mode-card-subtitle">Interactive Cloning &amp; Vaccine Workbench</div>
+          <p class="mode-card-desc">
+            Engineer a real vaccine step-by-step! Pick an outer viral antigen, snap together a circular <strong>Plasmid</strong>, pulse <strong>42°C heat-shock</strong>, pick white colonies on agar &amp; print your Certificate!
+          </p>
+          <div class="mode-concepts">
+            <span class="concept-chip">⭕ Plasmid Builder</span>
+            <span class="concept-chip">🧫 Agar &amp; UV Gel</span>
+            <span class="concept-chip">💉 mRNA / Vector</span>
+          </div>
+          <div class="mode-card-hs" id="hs-preview-mode2"></div>
+          <button type="button" class="btn btn-amber mode-card-btn">▶ Enter Vaccine Studio</button>
+        </article>
+
+        <!-- MODE 3: Virus Detective -->
+        <article class="mode-card mode-card--3" data-launch-mode="mode3" tabindex="0" role="button" aria-label="Launch Mode 3: Virus Detective">
+          <div class="mode-card-stripe stripe--purple"></div>
+          <div class="mode-card-top">
+            <div class="mode-icon-bubble" aria-hidden="true">🕵️</div>
+            <div class="mode-card-badges">
+              <span class="mode-card-tag">Mode 3 · Detective</span>
+              <span class="mode-time-est">⏱ 2–4 min</span>
+            </div>
+          </div>
+          <h2 class="mode-card-title">Virus Detective</h2>
+          <div class="mode-card-subtitle">3D Shapes, Spread &amp; Breakthroughs</div>
+          <p class="mode-card-desc">
+            Draw glowing connection cables between live virus portraits and their <strong>3D crystal/bullet shapes</strong>, real-world spread routes, <strong>DNA/RNA blueprints</strong>, and vaccine triumphs!
+          </p>
+          <div class="mode-concepts">
+            <span class="concept-chip">💎 3D Capsids</span>
+            <span class="concept-chip">🦟 Spread Routes</span>
+            <span class="concept-chip">🌍 Vaccine History</span>
+          </div>
+          <div class="mode-card-hs" id="hs-preview-mode3"></div>
+          <button type="button" class="btn btn-purple mode-card-btn">▶ Start Investigation</button>
+        </article>
+
+      </section>
+
+      <!-- Bottom Row: Achievements + Secondary Modals -->
+      <footer class="menu-bottom-grid">
+        <div class="menu-ach-wrap">
+          <div class="panel-heading">🏅 Achievement Badges (<span id="ach-count-label">0 / 8 Unlocked</span>)</div>
+          <div id="achievements-strip" class="achievements-strip"></div>
+        </div>
+
+        <div class="menu-footer-nav">
+          <div class="menu-nav-links">
+            <button type="button" class="menu-link-btn" data-modal="modal-learn">📖 Science Guide</button>
+            <button type="button" class="menu-link-btn" data-modal="modal-highscore">🏆 Leaderboard</button>
+            <button type="button" class="menu-link-btn" data-modal="modal-settings">⚙️ Settings</button>
+            <button type="button" class="menu-link-btn" data-modal="modal-credits">🎓 Credits</button>
+          </div>
+          <div class="menu-shortcuts-hint">
+            <span>Quick Keys:</span>
+            <kbd>1</kbd> <kbd>2</kbd> <kbd>3</kbd> Launch
+            <span>·</span>
+            <kbd>M</kbd> Mute
+            <span>·</span>
+            <kbd>D</kbd> Demo
+            <span>·</span>
+            <kbd>F</kbd> Fullscreen
+          </div>
+        </div>
+      </footer>
+
+    </div>
+  </main>
+
+  <!-- ========================================================================
+       MODE 1 SCREEN: CELL DEFENDER ARCADE (#screen-mode1)
+       ======================================================================== -->
+  <section id="screen-mode1" class="screen game-screen" aria-label="Cell Defender Arcade">
+    <header class="hud-bar">
+      <div class="hud-left">
+        <button type="button" class="hud-back-btn" id="mode1-btn-back">← Menu</button>
+        <span class="hud-mode-title">🛡️ Cell Defender</span>
+        <div class="hud-wave-box">
+          <span class="hud-wave-label" id="mode1-wave-label">Wave 1</span>
+          <div class="hud-wave-track">
+            <div class="hud-wave-fill" id="mode1-wave-fill" style="width: 0%"></div>
+          </div>
+        </div>
+      </div>
+
+      <div class="hud-mid">
+        <div class="hud-stat stat-combo">
+          <span class="hud-stat-label">Streak</span>
+          <span class="hud-stat-value" id="mode1-combo-val">0x</span>
+        </div>
+        <div class="hud-stat stat-lives">
+          <span class="hud-stat-label">Cell Health</span>
+          <span class="hud-stat-value" id="mode1-lives-val">❤️❤️❤️❤️❤️</span>
+        </div>
+        <div class="hud-stat stat-score">
+          <span class="hud-stat-label">Score</span>
+          <span class="hud-stat-value" id="mode1-score-val">0</span>
+        </div>
+      </div>
+
+      <div class="hud-right">
+        <button type="button" class="hud-icon-btn" id="scientist-toggle" title="Toggle Deeper Molecular Facts (S)">
+          🔬 Sci-Notes: <span id="sci-mode-state">OFF</span>
+        </button>
+        <button type="button" class="hud-icon-btn" id="mode1-btn-pause" title="Pause / Resume (P)">
+          ⏸ Pause
+        </button>
+      </div>
+    </header>
+
+    <div class="game-stage">
+      <div class="mode1-layout">
+        <div class="mode1-canvas-wrap">
+          <canvas id="canvas-mode1" width="1200" height="600"></canvas>
+        </div>
+        <div class="antibody-dock-bar" id="mode1-dock-bar" aria-label="Antibody Launcher Controls"></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ========================================================================
+       MODE 2 SCREEN: VACCINE MAKER STUDIO (#screen-mode2)
+       ======================================================================== -->
+  <section id="screen-mode2" class="screen game-screen" aria-label="Vaccine Maker Studio">
+    <div id="container-mode2"></div>
+  </section>
+
+  <!-- ========================================================================
+       MODE 3 SCREEN: VIRUS DETECTIVE (#screen-mode3)
+       ======================================================================== -->
+  <section id="screen-mode3" class="screen game-screen" aria-label="Virus Detective">
+    <div id="container-mode3"></div>
+  </section>
+
+  <!-- ========================================================================
+       MODAL: SCIENCE FIELD GUIDE (#modal-learn)
+       ======================================================================== -->
+  <div id="modal-learn" class="modal" role="dialog" aria-modal="true" aria-labelledby="title-modal-learn">
+    <div class="modal-card modal-card--large">
+      <div class="modal-header">
+        <h2 class="modal-title" id="title-modal-learn">📖 Pocket Virology &amp; Biotech Guide</h2>
+        <button type="button" class="modal-close" data-close-modal aria-label="Close">&times;</button>
+      </div>
+      <div class="modal-body">
+        <p style="font-size: 0.9rem; color: var(--text-secondary);">
+          Everything in <strong>ViroQuest</strong> is based on real biology from Class 12 Biotechnology &amp; 1st-year Molecular Biology! Here are the 4 big ideas behind the games:
+        </p>
+
+        <div class="guide-grid">
+          <div class="guide-box">
+            <h4>🔑 1. Lock-and-Key Cell Entry</h4>
+            <p>
+              Viruses cannot multiply on their own. To sneak inside a human cell, a virus's outer <strong>Spike protein ("Key")</strong> must fit into a specific <strong>Receptor ("Lock")</strong> on our cell membrane — like COVID-19's Spike binding <strong>ACE2</strong>, or HIV's gp120 binding <strong>CD4</strong>.
+            </p>
+          </div>
+
+          <div class="guide-box">
+            <h4>🛡️ 2. How Neutralizing Antibodies Work</h4>
+            <p>
+              Vaccines train B-cells to make Y-shaped <strong>Neutralizing Antibodies</strong>. These antibodies snap onto the virus's outer spikes <em>before</em> it reaches your cell — covering up its "keys" so infection never starts!
+            </p>
+          </div>
+
+          <div class="guide-box">
+            <h4>⭕ 3. Recombinant Plasmids &amp; Cloning</h4>
+            <p>
+              Instead of growing dangerous live viruses, scientists copy just <strong>one outer viral gene</strong> into a circular bacterial DNA ring called a <strong>Plasmid</strong> (with an <em>Origin</em>, <em>Promoter switch</em>, and <em>Kanamycin tag</em>), transform <em>E. coli</em> at <strong>42°C</strong>, and check white colonies on a <strong>UV DNA gel</strong>!
+            </p>
+          </div>
+
+          <div class="guide-box">
+            <h4>💉 4. Modern Vaccine Capsules</h4>
+            <p>
+              Once we have the pure viral blueprint, we deliver it safely as an <strong>mRNA Lipid Bubble</strong> (COVID-19), a <strong>Harmless Carrier Virus</strong> (Ebola Ervebo), a <strong>Purified Protein + Alum</strong> (Flu), or an <strong>Empty Virus-Like Shell</strong> (HPV Gardasil/Cervavac)!
+            </p>
+          </div>
+        </div>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-primary" data-close-modal>Got It — Let's Play!</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- ========================================================================
+       MODAL: HOW TO PLAY (#modal-howtoplay)
+       ======================================================================== -->
+  <div id="modal-howtoplay" class="modal" role="dialog" aria-modal="true" aria-labelledby="title-modal-howto">
+    <div class="modal-card modal-card--large">
+      <div class="modal-header">
+        <h2 class="modal-title" id="title-modal-howto">🎮 How to Play ViroQuest</h2>
+        <button type="button" class="modal-close" data-close-modal aria-label="Close">&times;</button>
+      </div>
+      <div class="modal-body">
+        <div class="guide-grid">
+          <div class="guide-box">
+            <h4>🛡️ Mode 1: Cell Defender</h4>
+            <p>
+              Look at the glowing shape inside each falling virus (<kbd>👑</kbd> <kbd>⭐</kbd> <kbd>🟦</kbd> <kbd>🔺</kbd> <kbd>⬡</kbd>). Click the matching <strong>Antibody Button</strong> at the bottom, click the cell receptor, drag across, or press keys <kbd>1</kbd>–<kbd>5</kbd>!
+            </p>
+          </div>
+
+          <div class="guide-box">
+            <h4>🧬 Mode 2: Vaccine Studio</h4>
+            <p>
+              1) Pick a target virus.<br />
+              2) Choose an <strong>OUTER</strong> surface gene.<br />
+              3) Snap on a human/RNA Promoter + high-copy Ori + KanR tag.<br />
+              4) Pulse <strong>42°C Heat-Shock</strong> &amp; click <strong>2 White Colonies</strong> to run the UV Gel!<br />
+              5) Pick a Delivery Capsule &amp; print your Certificate!
+            </p>
+          </div>
+
+          <div class="guide-box">
+            <h4>🕵️ Mode 3: Virus Detective</h4>
+            <p>
+              Click a <strong>Virus Card</strong> on the left and its matching <strong>Clue Card</strong> on the right — OR drag a glowing laser cable straight across! Stuck? Click <strong>💡 Hints</strong> in the top bar.
+            </p>
+          </div>
+        </div>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-primary" data-close-modal>Ready to Play!</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- ========================================================================
+       MODAL: LEADERBOARD (#modal-highscore)
+       ======================================================================== -->
+  <div id="modal-highscore" class="modal" role="dialog" aria-modal="true" aria-labelledby="title-modal-hs">
+    <div class="modal-card modal-card--large">
+      <div class="modal-header">
+        <h2 class="modal-title" id="title-modal-hs">🏆 Open Day Leaderboard</h2>
+        <button type="button" class="modal-close" data-close-modal aria-label="Close">&times;</button>
+      </div>
+      <div class="modal-body">
+        <div class="hs-tabs-bar">
+          <button type="button" class="hs-tab-btn active" data-hs-tab="all">All Modes</button>
+          <button type="button" class="hs-tab-btn" data-hs-tab="receptor_match">🛡️ Cell Defender</button>
+          <button type="button" class="hs-tab-btn" data-hs-tab="vaccine_design">🧬 Vaccine Studio</button>
+          <button type="button" class="hs-tab-btn" data-hs-tab="taxonomy">🕵️ Virus Detective</button>
+        </div>
+        <div id="hs-modal-content"></div>
+      </div>
+      <div class="modal-footer" style="justify-content: space-between;">
+        <button type="button" class="btn btn-danger btn-sm" id="btn-clear-scores">🗑️ Reset Scores</button>
+        <button type="button" class="btn btn-primary" data-close-modal>Close</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- ========================================================================
+       MODAL: SETTINGS (#modal-settings)
+       ======================================================================== -->
+  <div id="modal-settings" class="modal" role="dialog" aria-modal="true" aria-labelledby="title-modal-settings">
+    <div class="modal-card">
+      <div class="modal-header">
+        <h2 class="modal-title" id="title-modal-settings">⚙️ Exhibition &amp; Accessibility Settings</h2>
+        <button type="button" class="modal-close" data-close-modal aria-label="Close">&times;</button>
+      </div>
+      <div class="modal-body">
+        <div class="settings-list">
+          <div class="setting-row">
+            <div class="setting-info">
+              <strong>🔊 Sound Effects</strong>
+              <span>Synthesized offline Web Audio chimes &amp; feedback (<kbd>M</kbd>)</span>
+            </div>
+            <button type="button" class="btn btn-secondary btn-sm" id="setting-mute">🔊 Sound ON</button>
+          </div>
+
+          <div class="setting-row">
+            <div class="setting-info">
+              <strong>🖥️ Open Day Exhibition Mode</strong>
+              <span>Larger fonts + exhibition banner for booth displays (<kbd>D</kbd>)</span>
+            </div>
+            <button type="button" class="btn btn-secondary btn-sm" id="setting-demo">OFF</button>
+          </div>
+
+          <div class="setting-row">
+            <div class="setting-info">
+              <strong>👁️ High-Contrast Visuals</strong>
+              <span>Sharper borders and high-contrast text for bright rooms</span>
+            </div>
+            <button type="button" class="btn btn-secondary btn-sm" id="setting-contrast">OFF</button>
+          </div>
+
+          <div class="setting-row">
+            <div class="setting-info">
+              <strong>🗑️ Reset Booth Leaderboard &amp; Badges</strong>
+              <span>Clears local high scores &amp; achievements for a new session</span>
+            </div>
+            <button type="button" class="btn btn-danger btn-sm" id="setting-reset">Reset All</button>
+          </div>
+        </div>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-primary" data-close-modal>Done</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- ========================================================================
+       MODAL: CREDITS (#modal-credits)
+       ======================================================================== -->
+  <div id="modal-credits" class="modal" role="dialog" aria-modal="true" aria-labelledby="title-modal-credits">
+    <div class="modal-card">
+      <div class="modal-header">
+        <h2 class="modal-title" id="title-modal-credits">🎓 About ViroQuest</h2>
+        <button type="button" class="modal-close" data-close-modal aria-label="Close">&times;</button>
+      </div>
+      <div class="modal-body" style="display: flex; flex-direction: column; gap: 14px; font-size: 0.9rem; color: var(--text-secondary);">
+        <p>
+          <strong style="color: var(--text-white);">ViroQuest</strong> is a self-contained, 100% offline educational game created for College Open Day outreach on <em>Virology, Host–Virus Interactions &amp; Modern Vaccine Design</em>.
+        </p>
+        <div class="guide-box">
+          <h4>🧬 Curriculum Alignment</h4>
+          <p>
+            Tailored for <strong>Class 12 Biology / Biotechnology</strong> and <strong>1st-Year Undergraduate Life Sciences</strong> — turning NCERT/undergraduate concepts like receptor-mediated entry, recombinant plasmids (<code>Ori</code>, <code>KanR</code>, restriction sites), blue-white colony selection, agarose gel electrophoresis, and mRNA/VLP vaccines into hands-on play.
+          </p>
+        </div>
+        <div class="guide-box">
+          <h4>⚡ Zero External Dependencies</h4>
+          <p>
+            Built with pure HTML5 Canvas, SVG, CSS3, and procedural Web Audio API synthesis — runs offline on any laptop with a single click.
+          </p>
+        </div>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-primary" data-close-modal>Close</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- ========================================================================
+       GAME OVER / SCORE ENTRY OVERLAY (#overlay-gameover)
+       ======================================================================== -->
+  <div id="overlay-gameover" class="overlay" role="dialog" aria-modal="true" aria-labelledby="go-title">
+    <div class="overlay-card">
+      <div class="go-emoji" id="go-emoji">🛡️</div>
+      <h2 class="go-title" id="go-title">Mission Complete!</h2>
+      <p class="go-subtitle" id="go-subtitle">Awesome defense in the lab!</p>
+      <div class="go-new-best" id="go-new-best" hidden>🌟 New High Score!</div>
+
+      <div class="go-score-wrapper">
+        <span class="go-score-label">Final Score</span>
+        <span class="go-score" id="go-score">0</span>
+      </div>
+
+      <div class="go-name-section">
+        <label class="go-name-label" for="go-name-input">Enter Your Name or Initials for the Leaderboard:</label>
+        <div class="go-name-row">
+          <input
+            type="text"
+            id="go-name-input"
+            class="go-name-input"
+            maxlength="12"
+            placeholder="YOUR NAME"
+            autocomplete="off"
+          />
+        </div>
+      </div>
+
+      <div class="go-actions">
+        <button type="button" class="btn btn-secondary" id="btn-go-save-again">🔄 Play Again</button>
+        <button type="button" class="btn btn-primary" id="btn-go-save-menu">🏆 Save &amp; Menu</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Toast & Achievement Containers -->
+  <div id="toast-container" class="toast-container" aria-live="polite"></div>
+
+  <div id="achievement-popup" class="achievement-popup" role="status" aria-live="polite">
+    <div class="ach-inner">
+      <div class="ach-icon" id="ach-popup-icon">🏅</div>
+      <div class="ach-text">
+        <div class="ach-title" id="ach-popup-title">Badge Unlocked!</div>
+        <div class="ach-description" id="ach-popup-desc"></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Ordered Offline Scripts (Works on both direct file:// double-click & HTTP server!) -->
+  <script defer src="js/core/utils.js"></script>
+  <script defer src="js/core/audio.js"></script>
+  <script defer src="js/core/storage.js"></script>
+  <script defer src="js/core/particles.js"></script>
+  <script defer src="js/data/viruses.js"></script>
+  <script defer src="js/data/vaccines.js"></script>
+  <script defer src="js/data/taxonomy.js"></script>
+  <script defer src="js/modes/mode1-arcade.js"></script>
+  <script defer src="js/modes/mode2-lab.js"></script>
+  <script defer src="js/modes/mode3-matching.js"></script>
+  <script defer src="js/core/app.js"></script>
+</body>
+</html>

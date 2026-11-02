@@ -1,0 +1,24 @@
+{
+  "name": "viroquest-openday-game",
+  "version": "1.0.0",
+  "description": "Interactive educational game on Virology, Host-Virus Interaction & Vaccine Design for College Open Day demonstrations",
+  "main": "index.html",
+  "scripts": {
+    "start": "serve -l 8000 .",
+    "serve": "serve -l 8000 .",
+    "dev": "serve -l 8000 ."
+  },
+  "devDependencies": {
+    "serve": "^14.2.4"
+  },
+  "keywords": [
+    "virology",
+    "vaccine-design",
+    "educational-game",
+    "open-day",
+    "computational-biology",
+    "canvas-game"
+  ],
+  "author": "Computational Virology Team",
+  "license": "MIT"
+}
